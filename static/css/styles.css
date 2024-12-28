@@ -1,0 +1,162 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: linear-gradient(10deg, rgb(30, 40, 50), rgb(40, 50, 30), rgb(50, 30, 40));
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 5vh;
+  color: white;
+  letter-spacing: 2px;
+}
+
+input {
+  border-radius: .3rem;
+  font-size: 1.2rem;
+  margin: .5rem;
+  outline: none;
+  padding: .5rem;
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+}
+.column {
+  flex-flow: column wrap;
+}
+.row {
+  flex-flow: row wrap;
+}
+.going-center {
+  align-items: center;
+  justify-content: center;
+}
+.gap {
+  gap: .5rem;
+}
+
+#buttons-section #home-task-btn, #buttons-section #class-task-btn {
+  border-radius: .2rem;
+  border: white solid 1px;
+  margin: 2rem .5rem;
+  padding: 1rem;
+}
+
+.std-sentence-frame-adjustments {
+  border-radius: .2rem;
+  letter-spacing: 2px;
+  margin: .6rem .1rem;
+  padding: .3rem;
+  text-align: center;
+}
+
+.no-make-up {
+  background-color: white;
+  color: transparent;
+  height: 2.5rem;
+  width: 5rem;
+}
+
+.make-up {
+  background-color: purple;
+  color: yellow;
+}
+
+.adjective-make-up {
+  background-color: mediumseagreen;
+  color: yellow;
+}
+
+#sentences-section #sentences-box .hint-make-up {
+  background-color: yellow;
+  color: purple;
+  margin: 0 2rem;
+  padding: .5rem 1rem;
+}
+
+.input-style-for-inputs-game {
+  color: white;
+  background-color: rgb(30, 120, 200);
+  border: solid 1px black;
+}
+
+.input-style {
+  color: white;
+  background-color: mediumseagreen;
+  border: solid 1px black;
+}
+
+.vanish {
+  display: none
+}
+
+#sentences-section #score {
+  background-image: linear-gradient(45deg, blue, rgb(20, 40, 60), rgb(40, 80, 160));
+  color: white;
+  box-shadow: 0 0 1rem blue;
+  font-size: 2rem;
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  text-align: center;
+  padding-top: -1.5rem;
+}
+
+#tutorial-section {
+  background-image: linear-gradient(45deg, rgb(40, 60, 80), rgb(20, 40, 60), rgb(40, 80, 160));
+  border-radius: .4rem;
+  margin: 1rem;
+  padding: .5rem;
+  border: aqua solid 1px;
+}
+
+.adjusts {
+  border-radius: .3rem;
+  height: 2.5rem;
+  text-align: center;
+  width: 5rem;
+  padding-top: .5rem;
+}
+
+.subtitles {
+  color:rgb(30, 120, 200);
+}
+
+.description {
+  color: rgb(200, 102, 0);
+  letter-spacing: 2px;
+  margin: -.2rem .2rem;
+}
+
+.adjective-input {
+  background-color: mediumseagreen;
+}
+
+.complement-input {
+  background-color: purple;
+}
+
+.pronoun-input {
+  background-color: yellow;
+}
+
+.student-input {
+  background-color: white;
+}
+
+#tutorial-section #adjective-input-description {
+  color: mediumseagreen;
+}
+
+#tutorial-section #student-input-description {
+  color: white;
+}
