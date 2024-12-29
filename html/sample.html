@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,6 +7,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adjetivos Possessivos</title>
+
   <style>
 
     * {
@@ -14,8 +17,12 @@
     }
 
     body {
-      background-image: linear-gradient(10deg, rgb(30, 40, 50), rgb(40, 50, 30), rgb(50, 30, 40));
+      background-image: linear-gradient(10deg, rgb(25, 25, 100), rgb(0, 0, 100), rgb(50, 50, 100));
       min-height: 100vh;
+    }
+
+    button {
+      cursor: pointer;
     }
 
     h1 {
@@ -33,6 +40,10 @@
       text-align: center;
     }
 
+    li {
+      color: white;
+    }
+
     .flex {
       display: flex;
     }
@@ -42,6 +53,10 @@
     .row {
       flex-flow: row wrap;
     }
+    .going-left {
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
     .going-center {
       align-items: center;
       justify-content: center;
@@ -50,13 +65,165 @@
       gap: .5rem;
     }
 
-    #buttons-section #home-task-btn, #buttons-section #class-task-btn {
+    #buttons-section #home-task-btn, 
+    #buttons-section #class-task-btn {
       border-radius: .2rem;
       border: white solid 1px;
       margin: 2rem .5rem;
+      padding: .3rem;
+      transform: rotate(0deg);
+      transition: all linear .5s;
+    }
+
+    #buttons-section #home-task-btn #home-launcher, 
+    #buttons-section #class-task-btn #class-launcher {
+      transform: rotate(15deg);
+    }
+
+    #inputs-game-section #inputs-game {
+      background-color: rgb(20, 40, 60);
+      border: solid 1px rgb(60, 100, 140);
+      border-radius: .33rem;
       padding: 1rem;
     }
+
+    #inputs-game-section #inputs-game #inputs-game-must-know {
+      color: white;
+      padding-bottom: .5rem;
+    }
+
+    #reset-section {
+      text-align: center;
+    }
+
+    #sentences-section #score {
+      background-image: linear-gradient(45deg, blue, rgb(20, 40, 60), rgb(40, 80, 160));
+      color: yellow;
+      box-shadow: 0 0 1rem aqua;
+      font-size: 2rem;
+      position: fixed;
+      /* 
+      top: 5rem;
+      left: .5rem; 
+      */
+      bottom: 1rem;
+      left: .5rem;
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      text-align: center;
+      padding-top: -1.5rem;
+    }
+
+    #sentences-section #tutorial-section {
+      background-image: linear-gradient(45deg, rgb(40, 60, 80), rgb(20, 40, 60), rgb(40, 80, 160));
+      border-radius: .4rem;
+      margin: 1rem;
+      padding: .5rem;
+      border: aqua solid 1px;
+    }
+
+    #sentences-section #tutorial-section #adjective-input-description {
+      color: mediumseagreen;
+    }
+
+    #sentences-section #tutorial-section #home-task-tutorial {
+      margin-left: 1rem;
+    }
+
+    #sentences-section #tutorial-section #home-task-tutorial li {
+      margin: .3rem;
+    }
+
+    #sentences-section #tutorial-section #student-input-description {
+      color: white;
+    }
+
+    .std-adjective-input {
+      background-color: mediumseagreen;
+    }
     
+    /* Applied when answer is correct on home task */
+    .std-adjective-make-up {
+      background-color: mediumseagreen;
+      color: yellow;
+    }
+
+    .std-average {
+      font-size: 1.7rem;
+    }
+
+    .std-adjusts {
+      border-radius: .3rem;
+      height: 2.5rem;
+      text-align: center;
+      width: 5rem;
+      padding-top: .5rem;
+    }
+
+    .std-complement-input {
+      background-color: purple;
+    }
+
+    .std-description {
+      color: rgb(200, 102, 0);
+      letter-spacing: 1.5px;
+      margin: -.2rem .2rem;
+    }
+
+    .std-done {
+      font-size: 1.5rem;
+    }
+
+    .std-done::after {
+      content: "✔️";
+    }
+    
+    .std-greater {
+      font-size: 2.5rem;
+    }
+
+    .std-hint-make-up {
+      background-color: yellow;
+      color: purple;
+      margin: 0 2rem;
+      padding: .5rem 1rem;
+    }
+
+    .std-input-style {
+      color: white;
+      background-color: mediumseagreen;
+      border: solid 1px black;
+    }
+
+    .std-input-style-for-inputs-game {
+      color: white;
+      background-color: rgb(30, 120, 200);
+      border: solid 1px black;
+    }
+
+    .std-light {
+      color: aqua;
+      text-shadow: 0 0 1rem aqua;
+    }
+
+    .std-make-up {
+      background-color: purple;
+      border: yellow solid 1px;
+      color: yellow;
+    }
+
+    .std-no-make-up {
+      background-color: white;
+      color: transparent;
+      height: 2.5rem;
+      width: 5rem;
+    }
+
+    .std-pronoun-input {
+      background-color: yellow;
+    }
+
     .std-sentence-frame-adjustments {
       border-radius: .2rem;
       letter-spacing: 2px;
@@ -65,159 +232,128 @@
       text-align: center;
     }
 
-    .no-make-up {
+    .std-student-input {
       background-color: white;
-      color: transparent;
-      height: 2.5rem;
-      width: 5rem;
     }
 
-    .make-up {
-      background-color: purple;
-      color: yellow;
+    .std-subtitles {
+      color:rgb(30, 120, 200);
+      transition: all 1s;
     }
 
-    .adjective-make-up {
-      background-color: mediumseagreen;
-      color: yellow;
-    }
-
-    #sentences-section #sentences-box .hint-make-up {
-      background-color: yellow;
-      color: purple;
-      margin: 0 2rem;
-      padding: .5rem 1rem;
-    }
-
-    .input-style-for-inputs-game {
-      color: white;
-      background-color: rgb(30, 120, 200);
-      border: solid 1px black;
-    }
-
-    .input-style {
-      color: white;
-      background-color: mediumseagreen;
-      border: solid 1px black;
-    }
-
-    .vanish {
+    .std-vanish {
       display: none
     }
-
-    #sentences-section #score {
-      background-image: linear-gradient(45deg, blue, rgb(20, 40, 60), rgb(40, 80, 160));
-      color: white;
-      box-shadow: 0 0 1rem blue;
-      font-size: 2rem;
-      position: fixed;
-      top: 1.5rem;
-      left: 1.5rem;
-      height: 40px;
-      width: 40px;
-      border-radius: 50%;
-      text-align: center;
-      padding-top: -1.5rem;
-    }
-
-    #tutorial-section {
-      background-image: linear-gradient(45deg, rgb(40, 60, 80), rgb(20, 40, 60), rgb(40, 80, 160));
-      border-radius: .4rem;
-      margin: 1rem;
-      padding: .5rem;
-      border: aqua solid 1px;
-    }
-    
-    .adjusts {
-      border-radius: .3rem;
-      height: 2.5rem;
-      text-align: center;
-      width: 5rem;
-      padding-top: .5rem;
-    }
-
-    .subtitles {
-      color:rgb(30, 120, 200);
-    }
-
-    .description {
-      color: rgb(200, 102, 0);
-      letter-spacing: 2px;
-      margin: -.2rem .2rem;
-    }
-
-    .adjective-input {
-      background-color: mediumseagreen;
-    }
-
-    .complement-input {
-      background-color: purple;
-    }
-
-    .pronoun-input {
-      background-color: yellow;
-    }
-
-    .student-input {
-      background-color: white;
-    }
-
-    #tutorial-section #adjective-input-description {
-      color: mediumseagreen;
-    }
-
-    #tutorial-section #student-input-description {
-      color: white;
+  
+    @media (max-width: 600px) {
+      #banner-possessive-adjective {
+        opacity: .01;
+      }
+      h1 {
+        font-size: 1.2rem;
+      }
+      .std-adjusts {
+        margin: .2rem 0;
+        font-size: .8rem;
+      }
+      .std-description {
+        margin: .2rem 0;
+        font-size: .8rem;
+      }
+      .std-make-up {
+        font-size: .8rem;
+      }
+      .std-no-make-up {
+        display: none;
+      }
+      .std-subtitles {
+        transform: rotate(-90deg);
+        margin: -1rem;
+        padding: -1rem;
+      }
+      #subtitle-box {
+        flex-flow: column wrap;
+      }
+      #home-task-tutorial {
+        font-size: .9rem;
+      }
+      #written-typed, #text {
+        flex-flow: column wrap;
+      }
     }
 
   </style>
+
 </head>
 
 <body>
-  <div id="reset-section" class="flex column going-center vanish">
+
+  <div id="reset-section" class="flex column going-center std-vanish">
     <h1 id="activity-state"></h1>
     <h1 id="activity-procedure"></h1>
   </div>
 
   <div id="buttons-section" class="flex row going-center">
-    <button id="home-task-btn">tarefa de casa:<p id="home-launcher">iniciar</p></button>
-    <button id="class-task-btn">tarefa de classe:<p id="class-launcher">iniciar</p></button>
-    <button id="clean-storage-btn" class="std-sentence-frame-adjustments input-style-for-inputs-game">resetar<p>pontos</p></button>
+    <button id="home-task-btn">tarefa de <span class="std-average">🏠</span>:<p id="home-launcher" class="std-greater">🚀</p></button>
+    <button id="class-task-btn">tarefa de <span class="std-average">🏫</span>:<p id="class-launcher" class="std-greater">🚀</p></button>
+    <button id="clean-storage-btn" class="std-sentence-frame-adjustments std-input-style-for-inputs-game">resetar<p>pontos</p></button>
   </div>
 
   <div id="inputs-game-section" class="flex column going-center">
-    <div id="inputs-game" class="vanish"></div>
+    <div id="inputs-game" class="std-vanish">
+      <div id="inputs-game-must-know" class="flex column going-left">
+        <p>. Preencha os <span class="std-light">campos vazios</span> clicáveis</p>
+        <p>. Se for do lado <b>esquerdo</b>: preencher com <span class="std-light">pronome pessoal</span></p>
+        <p>. Se for do lado <b>direito</b>: preencher com <span class="std-light">adjetivo possessivo</span></p>
+      </div>
+    </div>
   </div>
 
   <div id="sentences-section" class="flex column going-center">
     <div id="score"></div>
     
-    <div id="tutorial-section" class="flex row going-center gap vanish">
-      <h3 class="subtitles">Legendas</h3>
-      <div class="flex column going-center gap">
-        <span class="adjusts student-input">escrito</span>
-        <span class="description">adjetivo</span>
-        <span class="description">possessivo</span>
+    <div id="tutorial-section" class="flex row going-center gap std-vanish">
+      
+      <h3 class="std-subtitles">Legendas</h3>
+      <p id="notes" class="std-greater">📝</p>
+      
+      <div id="written-typed" class="flex row going-center">
+        <div id="banner-possessive-adjective" class="flex column going-center gap">
+          <span class="ch1 std-adjusts std-student-input">escrito</span>
+          <span class="ch2 std-description">adjetivo</span>
+          <span class="ch3 std-description">possessivo</span>
+        </div>
+        <div class="flex column going-center gap">
+          <span class="std-adjusts std-adjective-input">digitável</span>
+          <span class="std-description">adjetivo</span>
+          <span class="std-description">possessivo</span>
+        </div>
       </div>
-      <div class="flex column going-center gap">
-        <span class="adjusts adjective-input">digitável</span>
-        <span class="description">adjetivo</span>
-        <span class="description">possessivo</span>
+      
+      <div id="text" class="flex row going-center">
+        <div class="flex column going-center gap">
+          <span class="std-adjusts std-complement-input">texto</span>
+          <span class="std-description">conteúdo</span>
+          <span class="std-description">da frase</span>
+        </div>
+        <div class="flex column going-center gap">
+          <span class="std-adjusts std-pronoun-input">texto</span>
+          <span class="std-description">pronome</span>
+          <span class="std-description">de referência</span>
+        </div>
       </div>
-      <div class="flex column going-center gap">
-        <span class="adjusts complement-input">texto</span>
-        <span class="description">conteúdo</span>
-        <span class="description">da frase</span>
-      </div>
-      <div class="flex column going-center gap">
-        <span class="adjusts pronoun-input">texto</span>
-        <span class="description">pronome</span>
-        <span class="description">de referência</span>
+
+      <div id="home-task-tutorial" class="flex column going-center">
+        <ul>
+          <li>observe o pronome em <span class="std-light">amarelo</span></li>
+          <li>clique no <span class="std-light">botão verde</span></li>
+          <li>digite o <span class="std-light">adjetivo possessivo</span> associado</li>
+        </ul>
       </div>
       
     </div>
     
-    <div id="sentences-box" class="vanish"></div>
+    <div id="sentences-box" class="std-vanish"></div>
   </div>
 
   <script>
@@ -243,32 +379,47 @@
 
     homeTaskButton.addEventListener("click", () => {
       if (sentencesBox.getAttribute("class") === "") {
-        sentencesBox.classList.add("vanish")
-        tutorialBox.classList.add("vanish")
-        document.getElementById("home-launcher").textContent = "OFF"
+        sentencesBox.classList.add("std-vanish")
+        tutorialBox.classList.add("std-vanish")
+        document.getElementById("home-launcher").style.transform = "rotate(90deg)"
         homeTaskButton.style.backgroundColor = "red"
       } else {
-        sentencesBox.classList.remove("vanish")
-        tutorialBox.classList.remove("vanish")
-        document.getElementById("home-launcher").textContent = "ON"
+        sentencesBox.classList.remove("std-vanish")
+        tutorialBox.classList.remove("std-vanish")
+        document.getElementById("home-launcher").style.transform = "rotate(45deg)"
         homeTaskButton.style.backgroundColor = niceGreen
       }
     })
 
     classTaskButton.addEventListener("click", () => {
       if (inputsGame.getAttribute("class") === "") {
-        inputsGame.classList.add("vanish")
-        document.getElementById("class-launcher").textContent = "OFF"
+        inputsGame.classList.add("std-vanish")
+        document.getElementById("class-launcher").style.transform = "rotate(90deg)"
         classTaskButton.style.backgroundColor = "red"
       } else {
-        inputsGame.classList.remove("vanish")
-        document.getElementById("class-launcher").textContent = "OFF"
+        inputsGame.classList.remove("std-vanish")
+        document.getElementById("class-launcher").style.transform = "rotate(45deg)"
         classTaskButton.style.backgroundColor = niceGreen
       }
     })
 
     function getRandomIndex(tail, head) {
       return Math.floor(Math.random() * (head - tail) + tail)
+    }
+
+    function getColor() {
+      let color = "#"
+      const numbers = "0.1.2.3.4.5.6.7.8.9.A.B.C.D.E.F".split(".")
+      for(let i = 0; i < 6; i++) {
+        color += numbers[getRandomIndex(0, numbers.length)]
+      }
+      return color
+    }
+
+    function makeColorStorm(container) {
+      for(let i = 0; i < container.length; i++) {
+        container[i].style.color = getColor()
+      }
     }
 
     function getPossessiveAdjetive() {
@@ -319,7 +470,7 @@
         const hint = document.createElement("span")
         hint.textContent = hintTxt
         hint.classList.add("std-sentence-frame-adjustments")
-        hint.classList.add("hint-make-up")
+        hint.classList.add("std-hint-make-up")
         container.appendChild(hint)
       }
     }
@@ -336,7 +487,7 @@
       inputElement.setAttribute("class", "answer")
       inputElement.setAttribute("placeholder", "")
       inputElement.setAttribute("size", "3")
-      inputElement.classList.add("input-style")
+      inputElement.classList.add("std-input-style")
       return inputElement
     }
 
@@ -356,7 +507,7 @@
         
         // [leftovers] Students can write in this area with a marker, instead of using the keyboard
         if (i == 0) {
-          sentenceWord.classList.add("no-make-up")
+          sentenceWord.classList.add("std-no-make-up")
         } 
 
         // Input creation and setup (the 2nd element of the sentence)
@@ -370,7 +521,7 @@
         
         // Everything else that is not the possessive adjective will receive this style
         else {
-          sentenceWord.classList.add("make-up")
+          sentenceWord.classList.add("std-make-up")
         }
         
         // Put the words together and place the whole thing in the frame
@@ -399,7 +550,7 @@
       // Then the source tag is nulled
       nullContentFromTag(sentenceDiv.childNodes[0], "from the possessive adjective tag")
       // Some needed correction (I won't explain)
-      sentenceDiv.childNodes[2].classList.add("make-up")
+      sentenceDiv.childNodes[2].classList.add("std-make-up")
       
       // The last element of each sentence (the hint) will be built according to the adjective 
       applyHint(currentAdjective === "My", sentenceDiv, "I")
@@ -437,7 +588,7 @@
         
         for (let i = 0; i < inputs.length; i++) {
           inputs[i].setAttribute("size", "5")
-          inputs[i].classList.add("input-style-for-inputs-game")
+          inputs[i].classList.add("std-input-style-for-inputs-game")
           i === 0 ? inputs[0].classList.add("pronoun") : inputs[1].classList.add("adjective")
           row.appendChild(inputs[i])
           container.appendChild(row)
@@ -445,36 +596,113 @@
       }
     }
 
+    function preserveData(dataKeyName, dataContinuousValue, dataResetedValue) {
+      localStorage.getItem(dataKeyName) != null 
+      ? localStorage.setItem(dataKeyName, parseInt(dataContinuousValue)) 
+      : localStorage.setItem(dataKeyName, dataResetedValue)
+    }
+
+    function getFeelingMsg(txt) {
+      const feelings = ["🙂", "😃", "😊", "🤗", "⭐", "⚡"]
+      return `${txt} ${feelings[getRandomIndex(0, feelings.length)]}`
+    }
+
+    function getUpdateMsg() {
+      const workers = ["👷‍♂️", "👷🏻‍♀️"]
+      const tools = ["🔧", "🔨", "⛏️", "👌", "💪"]
+      return `${workers[getRandomIndex(0, workers.length)]} ${tools[getRandomIndex(0, tools.length)]} novos exemplos 🚧`
+    }
+
     function rebootAfterClassTaskCompletion(accuracy, completionRefVal, blankInputsQueryGroup, inkColorRef, stateTag, procedureTag) {
       if (accuracy.length === completionRefVal) {
         if (blankInputsQueryGroup[accuracy.length - 1].tag.style.backgroundColor === inkColorRef) {
-          document.getElementById("buttons-section").classList.add("vanish")
-          document.getElementById("inputs-game-section").classList.add("vanish")
-          document.getElementById("sentences-section").classList.add("vanish")
-          document.getElementById("reset-section").classList.remove("vanish")
-          stateTag.textContent = "Atividade de classe completada!"
-          procedureTag.textContent = "reiniciando a sessão..."
+          document.getElementById("buttons-section").classList.add("std-vanish")
+          document.getElementById("inputs-game-section").classList.add("std-vanish")
+          document.getElementById("sentences-section").classList.add("std-vanish")
+          document.getElementById("reset-section").classList.remove("std-vanish")
           document.getElementById("reset-section").style.minHeight = "100vh"
-          setTimeout(() => {window.location.reload()}, 3000)
+
+          const tagsToShiftColor = [
+            stateTag, procedureTag
+          ]
+          
+          setTimeout(() => {
+          const info = "Atividade de classe completada!"
+          stateTag.textContent = info
+          stateTag.style.color = getColor()
+          setTimeout(() => {
+            procedureTag.textContent = getUpdateMsg()
+            makeColorStorm(tagsToShiftColor)
+            setTimeout(() => {
+              stateTag.textContent = getFeelingMsg(info)
+              procedureTag.textContent = getUpdateMsg() + "."
+              makeColorStorm(tagsToShiftColor)
+              setTimeout(() => {
+                stateTag.textContent = getFeelingMsg(info)
+                procedureTag.textContent = getUpdateMsg() + ".."
+                makeColorStorm(tagsToShiftColor)
+                setTimeout(() => {
+                  stateTag.textContent = getFeelingMsg(info)
+                  procedureTag.textContent = getUpdateMsg() + "..."
+                  makeColorStorm(tagsToShiftColor)
+                  setTimeout(() => {
+                    stateTag.textContent = getFeelingMsg(info)
+                    window.location.reload()
+                  }, getRandomIndex(1200, 2400))
+                }, getRandomIndex(400, 1200))
+              }, getRandomIndex(400, 1200))
+            }, getRandomIndex(400, 1200))
+          }, getRandomIndex(400, 1200))
+        }, getRandomIndex(400, 1200))
+
         }
       }
+      
+      preserveData("last-score", score.textContent, 0)
     }
 
     function rebootAfterHomeTaskCompletion(tail, head, score, stateTag, procedureTag) {
       if (tail === head) {
-        document.getElementById("buttons-section").classList.add("vanish")
-        document.getElementById("inputs-game-section").classList.add("vanish")
-        document.getElementById("sentences-section").classList.add("vanish")
-        document.getElementById("reset-section").classList.remove("vanish")
-        stateTag.textContent = "Atividade de casa em andamento!"
-        procedureTag.textContent = "carregando novos exemplos..."
+        document.getElementById("buttons-section").classList.add("std-vanish")
+        document.getElementById("inputs-game-section").classList.add("std-vanish")
+        document.getElementById("sentences-section").classList.add("std-vanish")
+        document.getElementById("reset-section").classList.remove("std-vanish")
         document.getElementById("reset-section").style.minHeight = "100vh"
         
-        localStorage.getItem("last-score") != null 
-        ? localStorage.setItem("last-score", parseInt(score.textContent)) 
-        : localStorage.setItem("last-score", 0)
+        preserveData("last-score", score.textContent, 0)
 
-        setTimeout(() => {window.location.reload()}, 3000)
+        const tagsToShiftColor = [
+          stateTag, procedureTag
+        ]
+
+        setTimeout(() => {
+          const info = "Atividade de casa em andamento!" 
+          stateTag.textContent = info
+          stateTag.style.color = getColor()
+          setTimeout(() => {
+            procedureTag.textContent = getUpdateMsg()
+            makeColorStorm(tagsToShiftColor)
+            setTimeout(() => {
+              stateTag.textContent = getFeelingMsg(info)
+              procedureTag.textContent = getUpdateMsg() + "."
+              makeColorStorm(tagsToShiftColor)
+              setTimeout(() => {
+                stateTag.textContent = getFeelingMsg(info)
+                procedureTag.textContent = getUpdateMsg() + ".."
+                makeColorStorm(tagsToShiftColor)
+                setTimeout(() => {
+                  stateTag.textContent = getFeelingMsg(info)
+                  procedureTag.textContent = getUpdateMsg() + "..."
+                  makeColorStorm(tagsToShiftColor)
+                  setTimeout(() => {
+                    stateTag.textContent = getFeelingMsg(info)
+                    window.location.reload()
+                  }, getRandomIndex(1200, 2400))
+                }, getRandomIndex(400, 1200))
+              }, getRandomIndex(400, 1200))
+            }, getRandomIndex(400, 1200))
+          }, getRandomIndex(400, 1200))
+        }, getRandomIndex(400, 1200))
       }
     }
 
@@ -524,7 +752,7 @@
     buildInputsGame(inputsGame)
     
     const allInputs = document.querySelectorAll(".answer")
-    const allInputsFromInputsGame = document.querySelectorAll(".input-style-for-inputs-game")
+    const allInputsFromInputsGame = document.querySelectorAll(".std-input-style-for-inputs-game")
     const blankOnes = []
     const filledOnes = []
     const accuracy = []
@@ -532,7 +760,7 @@
     score.textContent = parseInt(localStorage.getItem("last-score"))
 
     const loop = setInterval(() => {
-      
+      // if (window.innerWidth < 600) {}
       score.textContent === "NaN" ? score.textContent = "0" : null
       
       rebootAfterHomeTaskCompletion(scoreVal, 5, score, msgActivityState, msgActivityProcedure)
@@ -540,7 +768,7 @@
 
       for (let i = 0; i < allInputs.length; i++) {
 
-        // If user types, highlight target input
+        // If user types, highstd-light target input
         if (allInputs[i].value != "") {
           allInputs[i].style.border = "solid 3px yellow"
         } else {
@@ -565,16 +793,15 @@
             for (let i = 0; i < wholeSentence.length; i++) {
               wholeSentence[i].style.opacity = ".5"
               if (i === wholeSentence.length - 1) {
-                wholeSentence[i].classList.add("vanish")
+                // wholeSentence[i].classList.add("std-vanish")
+                wholeSentence[i].textContent = ""
+                wholeSentence[i].classList.add("std-done")
               }
             }
           }
-          sentencesBox.childNodes[i].childNodes[0].classList.remove("no-make-up")
-          sentencesBox.childNodes[i].childNodes[0].classList.add("adjective-make-up")
-        } else {
-          sentencesBox.childNodes[i].childNodes[0].classList.remove("adjective-make-up")
-          sentencesBox.childNodes[i].childNodes[0].classList.add("no-make-up")
-        }
+          sentencesBox.childNodes[i].childNodes[0].classList.remove("std-no-make-up")
+          sentencesBox.childNodes[i].childNodes[0].classList.add("std-adjective-make-up")
+        } 
       }
 
       for (let i = 0; i < allInputsFromInputsGame.length; i++) {
@@ -642,4 +869,5 @@
 
   </script>
 </body>
+
 </html>

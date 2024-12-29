@@ -19,32 +19,47 @@ cleanStorageButton.addEventListener("click", () => {
 
 homeTaskButton.addEventListener("click", () => {
   if (sentencesBox.getAttribute("class") === "") {
-    sentencesBox.classList.add("vanish")
-    tutorialBox.classList.add("vanish")
-    document.getElementById("home-launcher").textContent = "OFF"
+    sentencesBox.classList.add("std-vanish")
+    tutorialBox.classList.add("std-vanish")
+    document.getElementById("home-launcher").style.transform = "rotate(90deg)"
     homeTaskButton.style.backgroundColor = "red"
   } else {
-    sentencesBox.classList.remove("vanish")
-    tutorialBox.classList.remove("vanish")
-    document.getElementById("home-launcher").textContent = "ON"
+    sentencesBox.classList.remove("std-vanish")
+    tutorialBox.classList.remove("std-vanish")
+    document.getElementById("home-launcher").style.transform = "rotate(45deg)"
     homeTaskButton.style.backgroundColor = niceGreen
   }
 })
 
 classTaskButton.addEventListener("click", () => {
   if (inputsGame.getAttribute("class") === "") {
-    inputsGame.classList.add("vanish")
-    document.getElementById("class-launcher").textContent = "OFF"
+    inputsGame.classList.add("std-vanish")
+    document.getElementById("class-launcher").style.transform = "rotate(90deg)"
     classTaskButton.style.backgroundColor = "red"
   } else {
-    inputsGame.classList.remove("vanish")
-    document.getElementById("class-launcher").textContent = "OFF"
+    inputsGame.classList.remove("std-vanish")
+    document.getElementById("class-launcher").style.transform = "rotate(45deg)"
     classTaskButton.style.backgroundColor = niceGreen
   }
 })
 
 function getRandomIndex(tail, head) {
   return Math.floor(Math.random() * (head - tail) + tail)
+}
+
+function getColor() {
+  let color = "#"
+  const numbers = "0.1.2.3.4.5.6.7.8.9.A.B.C.D.E.F".split(".")
+  for(let i = 0; i < 6; i++) {
+    color += numbers[getRandomIndex(0, numbers.length)]
+  }
+  return color
+}
+
+function makeColorStorm(container) {
+  for(let i = 0; i < container.length; i++) {
+    container[i].style.color = getColor()
+  }
 }
 
 function getPossessiveAdjetive() {
@@ -95,7 +110,7 @@ function applyHint(assertion, container, hintTxt) {
     const hint = document.createElement("span")
     hint.textContent = hintTxt
     hint.classList.add("std-sentence-frame-adjustments")
-    hint.classList.add("hint-make-up")
+    hint.classList.add("std-hint-make-up")
     container.appendChild(hint)
   }
 }
@@ -112,7 +127,7 @@ function buildSentenceInput() {
   inputElement.setAttribute("class", "answer")
   inputElement.setAttribute("placeholder", "")
   inputElement.setAttribute("size", "3")
-  inputElement.classList.add("input-style")
+  inputElement.classList.add("std-input-style")
   return inputElement
 }
 
@@ -132,7 +147,7 @@ function buildSentence(htmlContainer, sentenceElement, answers) {
     
     // [leftovers] Students can write in this area with a marker, instead of using the keyboard
     if (i == 0) {
-      sentenceWord.classList.add("no-make-up")
+      sentenceWord.classList.add("std-no-make-up")
     } 
 
     // Input creation and setup (the 2nd element of the sentence)
@@ -146,7 +161,7 @@ function buildSentence(htmlContainer, sentenceElement, answers) {
     
     // Everything else that is not the possessive adjective will receive this style
     else {
-      sentenceWord.classList.add("make-up")
+      sentenceWord.classList.add("std-make-up")
     }
     
     // Put the words together and place the whole thing in the frame
@@ -175,7 +190,7 @@ function buildSentence(htmlContainer, sentenceElement, answers) {
   // Then the source tag is nulled
   nullContentFromTag(sentenceDiv.childNodes[0], "from the possessive adjective tag")
   // Some needed correction (I won't explain)
-  sentenceDiv.childNodes[2].classList.add("make-up")
+  sentenceDiv.childNodes[2].classList.add("std-make-up")
   
   // The last element of each sentence (the hint) will be built according to the adjective 
   applyHint(currentAdjective === "My", sentenceDiv, "I")
@@ -213,7 +228,7 @@ function buildInputsGame(container) {
     
     for (let i = 0; i < inputs.length; i++) {
       inputs[i].setAttribute("size", "5")
-      inputs[i].classList.add("input-style-for-inputs-game")
+      inputs[i].classList.add("std-input-style-for-inputs-game")
       i === 0 ? inputs[0].classList.add("pronoun") : inputs[1].classList.add("adjective")
       row.appendChild(inputs[i])
       container.appendChild(row)
@@ -221,36 +236,113 @@ function buildInputsGame(container) {
   }
 }
 
+function preserveData(dataKeyName, dataContinuousValue, dataResetedValue) {
+  localStorage.getItem(dataKeyName) != null 
+  ? localStorage.setItem(dataKeyName, parseInt(dataContinuousValue)) 
+  : localStorage.setItem(dataKeyName, dataResetedValue)
+}
+
+function getFeelingMsg(txt) {
+  const feelings = ["🙂", "😃", "😊", "🤗", "⭐", "⚡"]
+  return `${txt} ${feelings[getRandomIndex(0, feelings.length)]}`
+}
+
+function getUpdateMsg() {
+  const workers = ["👷‍♂️", "👷🏻‍♀️"]
+  const tools = ["🔧", "🔨", "⛏️", "👌", "💪"]
+  return `${workers[getRandomIndex(0, workers.length)]} ${tools[getRandomIndex(0, tools.length)]} novos exemplos 🚧`
+}
+
 function rebootAfterClassTaskCompletion(accuracy, completionRefVal, blankInputsQueryGroup, inkColorRef, stateTag, procedureTag) {
   if (accuracy.length === completionRefVal) {
     if (blankInputsQueryGroup[accuracy.length - 1].tag.style.backgroundColor === inkColorRef) {
-      document.getElementById("buttons-section").classList.add("vanish")
-      document.getElementById("inputs-game-section").classList.add("vanish")
-      document.getElementById("sentences-section").classList.add("vanish")
-      document.getElementById("reset-section").classList.remove("vanish")
-      stateTag.textContent = "Atividade de classe completada!"
-      procedureTag.textContent = "reiniciando a sessão..."
+      document.getElementById("buttons-section").classList.add("std-vanish")
+      document.getElementById("inputs-game-section").classList.add("std-vanish")
+      document.getElementById("sentences-section").classList.add("std-vanish")
+      document.getElementById("reset-section").classList.remove("std-vanish")
       document.getElementById("reset-section").style.minHeight = "100vh"
-      setTimeout(() => {window.location.reload()}, 3000)
+
+      const tagsToShiftColor = [
+        stateTag, procedureTag
+      ]
+      
+      setTimeout(() => {
+      const info = "Atividade de classe completada!"
+      stateTag.textContent = info
+      stateTag.style.color = getColor()
+      setTimeout(() => {
+        procedureTag.textContent = getUpdateMsg()
+        makeColorStorm(tagsToShiftColor)
+        setTimeout(() => {
+          stateTag.textContent = getFeelingMsg(info)
+          procedureTag.textContent = getUpdateMsg() + "."
+          makeColorStorm(tagsToShiftColor)
+          setTimeout(() => {
+            stateTag.textContent = getFeelingMsg(info)
+            procedureTag.textContent = getUpdateMsg() + ".."
+            makeColorStorm(tagsToShiftColor)
+            setTimeout(() => {
+              stateTag.textContent = getFeelingMsg(info)
+              procedureTag.textContent = getUpdateMsg() + "..."
+              makeColorStorm(tagsToShiftColor)
+              setTimeout(() => {
+                stateTag.textContent = getFeelingMsg(info)
+                window.location.reload()
+              }, getRandomIndex(1200, 2400))
+            }, getRandomIndex(400, 1200))
+          }, getRandomIndex(400, 1200))
+        }, getRandomIndex(400, 1200))
+      }, getRandomIndex(400, 1200))
+    }, getRandomIndex(400, 1200))
+
     }
   }
+  
+  preserveData("last-score", score.textContent, 0)
 }
 
 function rebootAfterHomeTaskCompletion(tail, head, score, stateTag, procedureTag) {
   if (tail === head) {
-    document.getElementById("buttons-section").classList.add("vanish")
-    document.getElementById("inputs-game-section").classList.add("vanish")
-    document.getElementById("sentences-section").classList.add("vanish")
-    document.getElementById("reset-section").classList.remove("vanish")
-    stateTag.textContent = "Atividade de casa em andamento!"
-    procedureTag.textContent = "carregando novos exemplos..."
+    document.getElementById("buttons-section").classList.add("std-vanish")
+    document.getElementById("inputs-game-section").classList.add("std-vanish")
+    document.getElementById("sentences-section").classList.add("std-vanish")
+    document.getElementById("reset-section").classList.remove("std-vanish")
     document.getElementById("reset-section").style.minHeight = "100vh"
     
-    localStorage.getItem("last-score") != null 
-    ? localStorage.setItem("last-score", parseInt(score.textContent)) 
-    : localStorage.setItem("last-score", 0)
+    preserveData("last-score", score.textContent, 0)
 
-    setTimeout(() => {window.location.reload()}, 3000)
+    const tagsToShiftColor = [
+      stateTag, procedureTag
+    ]
+
+    setTimeout(() => {
+      const info = "Atividade de casa em andamento!" 
+      stateTag.textContent = info
+      stateTag.style.color = getColor()
+      setTimeout(() => {
+        procedureTag.textContent = getUpdateMsg()
+        makeColorStorm(tagsToShiftColor)
+        setTimeout(() => {
+          stateTag.textContent = getFeelingMsg(info)
+          procedureTag.textContent = getUpdateMsg() + "."
+          makeColorStorm(tagsToShiftColor)
+          setTimeout(() => {
+            stateTag.textContent = getFeelingMsg(info)
+            procedureTag.textContent = getUpdateMsg() + ".."
+            makeColorStorm(tagsToShiftColor)
+            setTimeout(() => {
+              stateTag.textContent = getFeelingMsg(info)
+              procedureTag.textContent = getUpdateMsg() + "..."
+              makeColorStorm(tagsToShiftColor)
+              setTimeout(() => {
+                stateTag.textContent = getFeelingMsg(info)
+                window.location.reload()
+              }, getRandomIndex(1200, 2400))
+            }, getRandomIndex(400, 1200))
+          }, getRandomIndex(400, 1200))
+        }, getRandomIndex(400, 1200))
+      }, getRandomIndex(400, 1200))
+    }, getRandomIndex(400, 1200))
   }
 }
 
@@ -300,7 +392,7 @@ for (let i = 0; i < sentencesDatabase.length; i++) {
 buildInputsGame(inputsGame)
 
 const allInputs = document.querySelectorAll(".answer")
-const allInputsFromInputsGame = document.querySelectorAll(".input-style-for-inputs-game")
+const allInputsFromInputsGame = document.querySelectorAll(".std-input-style-for-inputs-game")
 const blankOnes = []
 const filledOnes = []
 const accuracy = []
@@ -308,7 +400,7 @@ const accuracy = []
 score.textContent = parseInt(localStorage.getItem("last-score"))
 
 const loop = setInterval(() => {
-  
+  // if (window.innerWidth < 600) {}
   score.textContent === "NaN" ? score.textContent = "0" : null
   
   rebootAfterHomeTaskCompletion(scoreVal, 5, score, msgActivityState, msgActivityProcedure)
@@ -316,7 +408,7 @@ const loop = setInterval(() => {
 
   for (let i = 0; i < allInputs.length; i++) {
 
-    // If user types, highlight target input
+    // If user types, highstd-light target input
     if (allInputs[i].value != "") {
       allInputs[i].style.border = "solid 3px yellow"
     } else {
@@ -341,16 +433,15 @@ const loop = setInterval(() => {
         for (let i = 0; i < wholeSentence.length; i++) {
           wholeSentence[i].style.opacity = ".5"
           if (i === wholeSentence.length - 1) {
-            wholeSentence[i].classList.add("vanish")
+            // wholeSentence[i].classList.add("std-vanish")
+            wholeSentence[i].textContent = ""
+            wholeSentence[i].classList.add("std-done")
           }
         }
       }
-      sentencesBox.childNodes[i].childNodes[0].classList.remove("no-make-up")
-      sentencesBox.childNodes[i].childNodes[0].classList.add("adjective-make-up")
-    } else {
-      sentencesBox.childNodes[i].childNodes[0].classList.remove("adjective-make-up")
-      sentencesBox.childNodes[i].childNodes[0].classList.add("no-make-up")
-    }
+      sentencesBox.childNodes[i].childNodes[0].classList.remove("std-no-make-up")
+      sentencesBox.childNodes[i].childNodes[0].classList.add("std-adjective-make-up")
+    } 
   }
 
   for (let i = 0; i < allInputsFromInputsGame.length; i++) {

@@ -8,51 +8,74 @@
 </head>
 <body>
 
-  <div id="reset-section" class="flex column going-center vanish">
+  <div id="reset-section" class="flex column going-center std-vanish">
     <h1 id="activity-state"></h1>
     <h1 id="activity-procedure"></h1>
   </div>
 
   <div id="buttons-section" class="flex row going-center">
-    <button id="home-task-btn">tarefa de casa:<p id="home-launcher">iniciar</p></button>
-    <button id="class-task-btn">tarefa de classe:<p id="class-launcher">iniciar</p></button>
-    <button id="clean-storage-btn" class="std-sentence-frame-adjustments input-style-for-inputs-game">resetar<p>pontos</p></button>
+    <button id="home-task-btn">tarefa de <span class="std-average">🏠</span>:<p id="home-launcher" class="std-greater">🚀</p></button>
+    <button id="class-task-btn">tarefa de <span class="std-average">🏫</span>:<p id="class-launcher" class="std-greater">🚀</p></button>
+    <button id="clean-storage-btn" class="std-sentence-frame-adjustments std-input-style-for-inputs-game">resetar<p>pontos</p></button>
   </div>
 
   <div id="inputs-game-section" class="flex column going-center">
-    <div id="inputs-game" class="vanish"></div>
+    <div id="inputs-game" class="std-vanish">
+      <div id="inputs-game-must-know" class="flex column going-left">
+        <p>. Preencha os <span class="std-light">campos vazios</span> clicáveis</p>
+        <p>. Se for do lado <b>esquerdo</b>: preencher com <span class="std-light">pronome pessoal</span></p>
+        <p>. Se for do lado <b>direito</b>: preencher com <span class="std-light">adjetivo possessivo</span></p>
+      </div>
+    </div>
   </div>
 
   <div id="sentences-section" class="flex column going-center">
     <div id="score"></div>
     
-    <div id="tutorial-section" class="flex row going-center gap vanish">
-      <h3 class="subtitles">Legendas</h3>
-      <div class="flex column going-center gap">
-        <span class="adjusts student-input">escrito</span>
-        <span class="description">adjetivo</span>
-        <span class="description">possessivo</span>
+    <div id="tutorial-section" class="flex row going-center gap std-vanish">
+      
+      <h3 class="std-subtitles">Legendas</h3>
+      <p id="notes" class="std-greater">📝</p>
+      
+      <div id="written-typed" class="flex row going-center">
+        <div id="banner-possessive-adjective" class="flex column going-center gap">
+          <span class="ch1 std-adjusts std-student-input">escrito</span>
+          <span class="ch2 std-description">adjetivo</span>
+          <span class="ch3 std-description">possessivo</span>
+        </div>
+        <div class="flex column going-center gap">
+          <span class="std-adjusts std-adjective-input">digitável</span>
+          <span class="std-description">adjetivo</span>
+          <span class="std-description">possessivo</span>
+        </div>
       </div>
-      <div class="flex column going-center gap">
-        <span class="adjusts adjective-input">digitável</span>
-        <span class="description">adjetivo</span>
-        <span class="description">possessivo</span>
+      
+      <div id="text" class="flex row going-center">
+        <div class="flex column going-center gap">
+          <span class="std-adjusts std-complement-input">texto</span>
+          <span class="std-description">conteúdo</span>
+          <span class="std-description">da frase</span>
+        </div>
+        <div class="flex column going-center gap">
+          <span class="std-adjusts std-pronoun-input">texto</span>
+          <span class="std-description">pronome</span>
+          <span class="std-description">de referência</span>
+        </div>
       </div>
-      <div class="flex column going-center gap">
-        <span class="adjusts complement-input">texto</span>
-        <span class="description">conteúdo</span>
-        <span class="description">da frase</span>
-      </div>
-      <div class="flex column going-center gap">
-        <span class="adjusts pronoun-input">texto</span>
-        <span class="description">pronome</span>
-        <span class="description">de referência</span>
+
+      <div id="home-task-tutorial" class="flex column going-center">
+        <ul>
+          <li>observe o pronome em <span class="std-light">amarelo</span></li>
+          <li>clique no <span class="std-light">botão verde</span></li>
+          <li>digite o <span class="std-light">adjetivo possessivo</span> associado</li>
+        </ul>
       </div>
       
     </div>
     
-    <div id="sentences-box" class="vanish"></div>
+    <div id="sentences-box" class="std-vanish"></div>
   </div>
+
   <script src="../static/js/script.js" type="text/javascript"></script>
 </body>
 </html>

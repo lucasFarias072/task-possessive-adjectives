@@ -5,8 +5,12 @@
 }
 
 body {
-  background-image: linear-gradient(10deg, rgb(30, 40, 50), rgb(40, 50, 30), rgb(50, 30, 40));
+  background-image: linear-gradient(10deg, rgb(25, 25, 100), rgb(0, 0, 100), rgb(50, 50, 100));
   min-height: 100vh;
+}
+
+button {
+  cursor: pointer;
 }
 
 h1 {
@@ -24,6 +28,10 @@ input {
   text-align: center;
 }
 
+li {
+  color: white;
+}
+
 .flex {
   display: flex;
 }
@@ -33,6 +41,10 @@ input {
 .row {
   flex-flow: row wrap;
 }
+.going-left {
+  align-items: flex-start;
+  justify-content: flex-start;
+}
 .going-center {
   align-items: center;
   justify-content: center;
@@ -41,11 +53,163 @@ input {
   gap: .5rem;
 }
 
-#buttons-section #home-task-btn, #buttons-section #class-task-btn {
+#buttons-section #home-task-btn, 
+#buttons-section #class-task-btn {
   border-radius: .2rem;
   border: white solid 1px;
   margin: 2rem .5rem;
+  padding: .3rem;
+  transform: rotate(0deg);
+  transition: all linear .5s;
+}
+
+#buttons-section #home-task-btn #home-launcher, 
+#buttons-section #class-task-btn #class-launcher {
+  transform: rotate(15deg);
+}
+
+#inputs-game-section #inputs-game {
+  background-color: rgb(20, 40, 60);
+  border: solid 1px rgb(60, 100, 140);
+  border-radius: .33rem;
   padding: 1rem;
+}
+
+#inputs-game-section #inputs-game #inputs-game-must-know {
+  color: white;
+  padding-bottom: .5rem;
+}
+
+#reset-section {
+  text-align: center;
+}
+
+#sentences-section #score {
+  background-image: linear-gradient(45deg, blue, rgb(20, 40, 60), rgb(40, 80, 160));
+  color: yellow;
+  box-shadow: 0 0 1rem aqua;
+  font-size: 2rem;
+  position: fixed;
+  /* 
+  top: 5rem;
+  left: .5rem; 
+  */
+  bottom: 1rem;
+  left: .5rem;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  text-align: center;
+  padding-top: -1.5rem;
+}
+
+#sentences-section #tutorial-section {
+  background-image: linear-gradient(45deg, rgb(40, 60, 80), rgb(20, 40, 60), rgb(40, 80, 160));
+  border-radius: .4rem;
+  margin: 1rem;
+  padding: .5rem;
+  border: aqua solid 1px;
+}
+
+#sentences-section #tutorial-section #adjective-input-description {
+  color: mediumseagreen;
+}
+
+#sentences-section #tutorial-section #home-task-tutorial {
+  margin-left: 1rem;
+}
+
+#sentences-section #tutorial-section #home-task-tutorial li {
+  margin: .3rem;
+}
+
+#sentences-section #tutorial-section #student-input-description {
+  color: white;
+}
+
+.std-adjective-input {
+  background-color: mediumseagreen;
+}
+
+/* Applied when answer is correct on home task */
+.std-adjective-make-up {
+  background-color: mediumseagreen;
+  color: yellow;
+}
+
+.std-average {
+  font-size: 1.7rem;
+}
+
+.std-adjusts {
+  border-radius: .3rem;
+  height: 2.5rem;
+  text-align: center;
+  width: 5rem;
+  padding-top: .5rem;
+}
+
+.std-complement-input {
+  background-color: purple;
+}
+
+.std-description {
+  color: rgb(200, 102, 0);
+  letter-spacing: 1.5px;
+  margin: -.2rem .2rem;
+}
+
+.std-done {
+  font-size: 1.5rem;
+}
+
+.std-done::after {
+  content: "✔️";
+}
+
+.std-greater {
+  font-size: 2.5rem;
+}
+
+.std-hint-make-up {
+  background-color: yellow;
+  color: purple;
+  margin: 0 2rem;
+  padding: .5rem 1rem;
+}
+
+.std-input-style {
+  color: white;
+  background-color: mediumseagreen;
+  border: solid 1px black;
+}
+
+.std-input-style-for-inputs-game {
+  color: white;
+  background-color: rgb(30, 120, 200);
+  border: solid 1px black;
+}
+
+.std-light {
+  color: aqua;
+  text-shadow: 0 0 1rem aqua;
+}
+
+.std-make-up {
+  background-color: purple;
+  border: yellow solid 1px;
+  color: yellow;
+}
+
+.std-no-make-up {
+  background-color: white;
+  color: transparent;
+  height: 2.5rem;
+  width: 5rem;
+}
+
+.std-pronoun-input {
+  background-color: yellow;
 }
 
 .std-sentence-frame-adjustments {
@@ -56,107 +220,52 @@ input {
   text-align: center;
 }
 
-.no-make-up {
+.std-student-input {
   background-color: white;
-  color: transparent;
-  height: 2.5rem;
-  width: 5rem;
 }
 
-.make-up {
-  background-color: purple;
-  color: yellow;
+.std-subtitles {
+  color:rgb(30, 120, 200);
+  transition: all 1s;
 }
 
-.adjective-make-up {
-  background-color: mediumseagreen;
-  color: yellow;
-}
-
-#sentences-section #sentences-box .hint-make-up {
-  background-color: yellow;
-  color: purple;
-  margin: 0 2rem;
-  padding: .5rem 1rem;
-}
-
-.input-style-for-inputs-game {
-  color: white;
-  background-color: rgb(30, 120, 200);
-  border: solid 1px black;
-}
-
-.input-style {
-  color: white;
-  background-color: mediumseagreen;
-  border: solid 1px black;
-}
-
-.vanish {
+.std-vanish {
   display: none
 }
 
-#sentences-section #score {
-  background-image: linear-gradient(45deg, blue, rgb(20, 40, 60), rgb(40, 80, 160));
-  color: white;
-  box-shadow: 0 0 1rem blue;
-  font-size: 2rem;
-  position: fixed;
-  top: 1.5rem;
-  left: 1.5rem;
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  text-align: center;
-  padding-top: -1.5rem;
-}
-
-#tutorial-section {
-  background-image: linear-gradient(45deg, rgb(40, 60, 80), rgb(20, 40, 60), rgb(40, 80, 160));
-  border-radius: .4rem;
-  margin: 1rem;
-  padding: .5rem;
-  border: aqua solid 1px;
-}
-
-.adjusts {
-  border-radius: .3rem;
-  height: 2.5rem;
-  text-align: center;
-  width: 5rem;
-  padding-top: .5rem;
-}
-
-.subtitles {
-  color:rgb(30, 120, 200);
-}
-
-.description {
-  color: rgb(200, 102, 0);
-  letter-spacing: 2px;
-  margin: -.2rem .2rem;
-}
-
-.adjective-input {
-  background-color: mediumseagreen;
-}
-
-.complement-input {
-  background-color: purple;
-}
-
-.pronoun-input {
-  background-color: yellow;
-}
-
-.student-input {
-  background-color: white;
-}
-
-#tutorial-section #adjective-input-description {
-  color: mediumseagreen;
-}
-
-#tutorial-section #student-input-description {
-  color: white;
+@media (max-width: 600px) {
+  #banner-possessive-adjective {
+    opacity: .01;
+  }
+  h1 {
+    font-size: 1.2rem;
+  }
+  .std-adjusts {
+    margin: .2rem 0;
+    font-size: .8rem;
+  }
+  .std-description {
+    margin: .2rem 0;
+    font-size: .8rem;
+  }
+  .std-make-up {
+    font-size: .8rem;
+  }
+  .std-no-make-up {
+    display: none;
+  }
+  .std-subtitles {
+    transform: rotate(-90deg);
+    margin: -1rem;
+    padding: -1rem;
+  }
+  #subtitle-box {
+    flex-flow: column wrap;
+  }
+  #home-task-tutorial {
+    font-size: .9rem;
+  }
+  #written-typed, #text {
+    flex-flow: column wrap;
+  }
 }
