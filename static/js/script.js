@@ -11,6 +11,9 @@ const sentencesBox = document.getElementById("sentences-box")
 const msgActivityState = document.getElementById("activity-state")
 const msgActivityProcedure = document.getElementById("activity-procedure")
 
+enableCheating(document.getElementById("cheat-btn-class-task"), document.getElementById("cheat-input-class-task"))
+enableCheating(document.getElementById("cheat-btn-home-task"), document.getElementById("cheat-input-home-task"))
+
 cleanStorageButton.addEventListener("click", () => {
   localStorage.removeItem("last-score")
   scoreVal = 0
@@ -42,6 +45,57 @@ classTaskButton.addEventListener("click", () => {
     classTaskButton.style.backgroundColor = niceGreen
   }
 })
+
+function calculatePrecision(wordA, wordB) {
+  if (wordA.length === 0 || wordB.length === 0) {
+    return 0
+  }
+
+  let accuracy = 0
+  let calculus = 0
+  let result = ""
+
+  // Keyboards may force to start with capital letter
+  // With this in mind, consider correct also the first letter being capitalized
+  // For instance: [angel, Angel] the 1st letters are !=, but they will be considered correct
+  if (wordA[0] === wordB[0] || wordA[0] === convertIntoTitle(wordB, false)[0]) {
+    accuracy++
+  }
+  
+  for(let i = 1; i < wordA.length; i++) {
+    if (wordA[i] === wordB[i]) {
+      accuracy++
+    }
+  } 
+  
+  if (accuracy != 0) {
+    calculus = (accuracy / wordA.length) * 100
+    if (calculus.toString().length > 5) {
+      result = calculus.toString().substring(0, 5)
+      return result
+    }
+  }
+  return accuracy === 0 ? 0 : (accuracy / wordA.length) * 100
+}
+
+function enableCheating(controller, container) {
+  controller.addEventListener("click", () => {
+    const pronouns = ["I", "you", "he", "she", "it", "we", "they"]
+    const adjectives = ["my", "your", "his", "her", "its", "our", "their"]
+    const mockerings = ["❌", "🙅‍♀️", "kkk", "👎", "😬", "🚫", "😘", "🤷", "🤡", "🤣", "😜"]
+    const token = Math.random()
+    
+    if (token > 0.88 && token < 0.92 || token > 0.13 && token < 0.17) {
+      const i = getRandomIndex(0, pronouns.length)
+      container.value = `🏆 ${pronouns[i]}/${adjectives[i]}`
+      setTimeout(() => {
+        container.value = ""
+      }, 1000)
+    } else {
+      container.value = `${mockerings[getRandomIndex(0, mockerings.length)]}`
+    }
+  })
+}
 
 function getRandomIndex(tail, head) {
   return Math.floor(Math.random() * (head - tail) + tail)
@@ -210,6 +264,7 @@ function buildSentence(htmlContainer, sentenceElement, answers) {
 function buildInputsGame(container) {
   const pronouns = ["I", "you", "he", "she", "it", "we", "they"]
   const adjectives = ["my", "your", "his", "her", "its", "our", "their"]
+  
   for (let i = 0; i < 7; i++) {
     const row = document.createElement("div")
     row.setAttribute("class", "flex row going-center")
@@ -227,12 +282,20 @@ function buildInputsGame(container) {
     }
     
     for (let i = 0; i < inputs.length; i++) {
-      inputs[i].setAttribute("size", "5")
+      inputs[i].setAttribute("size", "3")
       inputs[i].classList.add("std-input-style-for-inputs-game")
       i === 0 ? inputs[0].classList.add("pronoun") : inputs[1].classList.add("adjective")
       row.appendChild(inputs[i])
       container.appendChild(row)
     }
+
+    const accuracyBox = document.createElement("span")
+    accuracyBox.setAttribute("class", "std-word-accuracy")
+    accuracyBox.style.color = "yellow"
+    accuracyBox.style.textAlign = "center"
+    accuracyBox.style.textShadow = "0 0 1rem yellow"
+    accuracyBox.style.width = "5rem"
+    row.appendChild(accuracyBox)
   }
 }
 
@@ -399,6 +462,8 @@ const accuracy = []
 
 score.textContent = parseInt(localStorage.getItem("last-score"))
 
+const accuracyItems = document.querySelectorAll(".std-word-accuracy")
+
 const loop = setInterval(() => {
   // if (window.innerWidth < 600) {}
   score.textContent === "NaN" ? score.textContent = "0" : null
@@ -482,13 +547,18 @@ const loop = setInterval(() => {
   // Iterate over the blank inputs
   blankOnes.forEach((blankInput, pos) => {
     // blankInput.tag.value = String.fromCharCode(blankInput.tag.value.charCodeAt(0) + 32)
+    try {
+      accuracyItems[pos].textContent = `${calculatePrecision(blankOnes[pos].txt, blankInput.tag.value)}%`
+    } catch (e) {}
   
     // If the blank input is being filled up
     if (blankInput.tag.value != "") {
       // And becomes equals to the expected value
       // Or statements is here because cellphones put first letters as capital letters
       if (blankInput.tag.value === blankOnes[pos].txt || blankInput.tag.value === blankOnes[pos].txtUpper) {
+        accuracyItems[pos].textContent += " 🎖️"
         // Paint to show accuracy
+        if (!blankOnes[pos].tag.value.includes("🎯")) {blankOnes[pos].tag.value += "🎯"}
         blankOnes[pos].tag.style.backgroundColor = "rgb(100, 200, 0)"
         !accuracy.includes(blankOnes[pos].txt) ? accuracy.push(blankOnes[pos].txt) : null
         // console.log(accuracy)

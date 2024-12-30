@@ -68,6 +68,13 @@ li {
   transform: rotate(15deg);
 }
 
+#inputs-game-section #cheat-btn-class-task, #sentences-section #cheat-btn-home-task {
+  background-color: rgb(0, 100, 255);
+  border: solid 1px rgb(0, 0, 100);
+  color: white;
+  padding: 0 .3rem;
+}
+
 #inputs-game-section #inputs-game {
   background-color: rgb(20, 40, 60);
   border: solid 1px rgb(60, 100, 140);
