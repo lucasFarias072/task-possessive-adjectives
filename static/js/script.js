@@ -555,7 +555,7 @@ const loop = setInterval(() => {
     if (blankInput.tag.value != "") {
       // And becomes equals to the expected value
       // Or statements is here because cellphones put first letters as capital letters
-      if (blankInput.tag.value === blankOnes[pos].txt || blankInput.tag.value === blankOnes[pos].txtUpper) {
+      if (blankInput.tag.value === blankOnes[pos].txt || blankInput.tag.value === blankOnes[pos].txtUpper || blankInput.tag.value.includes("🎯")) {
         accuracyItems[pos].textContent += " 🎖️"
         // Paint to show accuracy
         if (!blankOnes[pos].tag.value.includes("🎯")) {blankOnes[pos].tag.value += "🎯"}
