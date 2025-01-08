@@ -53,6 +53,10 @@ li {
   gap: .5rem;
 }
 
+#cheat-input-class-task, #cheat-input-home-task {
+  font-size: .9rem;
+}
+
 #buttons-section #home-task-btn, 
 #buttons-section #class-task-btn {
   border-radius: .2rem;
